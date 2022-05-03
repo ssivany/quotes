@@ -2,16 +2,33 @@ import "./App.css";
 
 import QuoteAndAuthor from "./QuoteAndAuthor";
 import React from "react";
+import axios from 'axios'
 import quotes from './QuotesDatabase'
+
+let allData;
 
 class App extends React.Component {
   constructor() {
     super();
+    //this.getData();
     this.state = {
       quote: quotes[0].quote,
       author: quotes[0].author,
     };
   }
+
+  getData() {
+    const url = 'http://localhost:5000'
+    axios.get(url)
+      .then((response) => {
+        allData = response.data.recordset;
+        console.log(allData)
+
+      })
+      .catch(error => console.error(`Error: ${error}`));
+  }
+
+
   randomQuote() {
     const randomNumber = Math.floor(Math.random() * quotes.length);
     return quotes[randomNumber];
@@ -28,6 +45,7 @@ class App extends React.Component {
       author: generateRandomQuote.author
     });
     this.shuffleQuotes(quotes)
+    this.getData();
   };
 
   randomColor() {
