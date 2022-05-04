@@ -10,7 +10,6 @@ let allData;
 class App extends React.Component {
   constructor() {
     super();
-    //this.getData();
     this.state = {
       quote: quotes[0].quote,
       author: quotes[0].author,
