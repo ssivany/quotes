@@ -17,21 +17,23 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getData()
+  }
+
   getData() {
     const url = 'http://localhost:5000'
     axios.get(url)
       .then((response) => {
         allData = response.data.recordset;
-        console.log(allData)
-
       })
       .catch(error => console.error(`Error: ${error}`));
   }
 
 
   randomQuote() {
-    const randomNumber = Math.floor(Math.random() * quotes.length);
-    return quotes[randomNumber];
+    const randomNumber = Math.floor(Math.random() * allData.length);
+    return allData[randomNumber];
     
   }
   shuffleQuotes(array){
@@ -44,7 +46,7 @@ class App extends React.Component {
       quote: generateRandomQuote.quote,
       author: generateRandomQuote.author
     });
-    this.shuffleQuotes(quotes)
+    this.shuffleQuotes(allData)
     this.getData();
   };
 
