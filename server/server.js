@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
     var config = {
         user: 'sqlserver',
         password: '1234',
-        server: 'localhost', 
+        server: '34.65.30.63', 
         database: 'quotes',
         trustServerCertificate: true, 
     };
@@ -34,7 +34,10 @@ app.get('/', function (req, res) {
             
         });
     });
+    console.log("Connection to SQL is Working")
 });
+
+
 
 var server = app.listen(5000, function () {
     console.log('Server is running..');

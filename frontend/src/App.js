@@ -25,6 +25,7 @@ class App extends React.Component {
     axios.get(url)
       .then((response) => {
         allData = response.data.recordset;
+        console.log(response)
       })
       .catch(error => console.error(`Error: ${error}`));
   }
